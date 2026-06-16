@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ドパガキ神社</title>
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    overflow: hidden;
+  }
+  #room {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .coinbox {
+    font-size: 90px;
+    animation: float 2s infinite alternate;
+  }
+  .scroll {
+    font-size: 70px;
+    margin: 20px;
+  }
+  input {
+    padding: 15px;
+    font-size: 24px;
+    width: 260px;
+    text-align: center;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 22px;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  #result {
+    margin-top: 30px;
+    font-size: 30px;
+    line-height: 1.6;
+  }
+  @keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+  }
+</style>
+</head>
+<body>
+
+<div id="room">
+  <h1>脳内麻痺の可視化：ドパガキ神社</h1>
+
+  <div class="coinbox">👍 賽銭箱</div>
+  <div class="scroll">📜 無限スクロールの巻物 📜</div>
+
+  <p>今日スマホで溶かした時間を入力してください</p>
+  <input id="minutes" type="number" placeholder="例：120">
+  <button onclick="pray()">供養する</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+function pray() {
+  const min = document.getElementById("minutes").value;
+  const result = document.getElementById("result");
+
+  if (min === "" || min <= 0) {
+    result.innerHTML = "ちゃんと時間を入れてください。神も困っています。";
+    return;
+  }
+
+  result.innerHTML = `
+    🛐 汝、${min}分間の脳内ドパミン大暴走を遂げり！<br>
+    👍 いいね賽銭箱に奉納されました<br>
+    📜 無限スクロールの罪、ここに供養完了
+  `;
+
+  document.body.style.background = randomColor();
+}
+
+function randomColor() {
+  const colors = ["#ff4d6d", "#7b2cbf", "#00b4d8", "#ffb703", "#2b9348"];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+</script>
+
+</body>
+</html>
